@@ -1,0 +1,14 @@
+image: alpine:latest
+
+pages:
+  stage: deploy
+  script:
+    # Copy repo root (app/ + 6s092/ + _redirects etc.) into public/
+    - cp -r . public
+    # Remove the public/ dir that was copied into itself
+    - rm -rf public/public
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

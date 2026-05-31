@@ -1,0 +1,8 @@
+[build]
+  publish = "."
+  command = ""          # no build step needed — pure static files
+
+[[redirects]]
+  from = "/"
+  to   = "/app/"
+  status = 302
