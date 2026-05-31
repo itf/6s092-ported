@@ -4,9 +4,9 @@
 [Recitation 1](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_r01/) on OCW, Sections on Asymptotic Notation, Model of Computation, and Efficiency Exercises (originally, Asymptotic Notation and Efficiency sections of Recitation notes 1, 6.006 Fall 2018 on Stellar)
 
 
-#Asymptotics
+# Asymptotics
 
-##Big O Notation
+## Big O Notation
 
 We say that $f(n) \in O(g(n)$ if there exists $n_0$ and c such that for all $n>n_0$, $f(n) \le cg(n)$, where c is a positive constant.
 

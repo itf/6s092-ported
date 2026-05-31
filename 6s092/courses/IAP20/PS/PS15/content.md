@@ -82,7 +82,7 @@ csq_nsubmits = None
 csq_name="p5"
 </question>
 
-#Binary Trees: Implementation
+# Binary Trees: Implementation
 Recall that binary trees are often implemented as just (dynamic) arrays, with the elements in the first row listed before the elements in the second, before the elements in the third, and so on. With some simple arithmetic (and zero-indexing!) we gather that the left child of the parent in position $i$ is stored in position $2i+1$, and the right child in position $2i+2$.
 
 <question pythoncode>

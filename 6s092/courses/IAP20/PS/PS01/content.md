@@ -2,9 +2,9 @@
 Asymptotic Notation and Efficiency sections of Recitation notes 1, 6.006 Fall 2018 on Stellar.
 
 
-#Asymptotics
+# Asymptotics
 
-##Big O Notation
+## Big O Notation
 
 We say that $f(n) \in O(g(n)$ if there exists $n_0$ and c such that for all $n>n_0$, $f(n) \le cg(n)$, where c is a positive constant.
 
