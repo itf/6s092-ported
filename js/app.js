@@ -39,11 +39,11 @@ async function loadManifest() {
                   'PS19','PS20','PS21','PS22','PS23','PS24','PS25','PS26','PS27'],
         },
         {
-          id: 'IAP20',
-          name: '6.s092 IAP 2020',
-          psets: ['PS01','PS02','PS03','PS04','PS05','PS06','PS065','PS07','PS08',
-                  'PS09','PS10','PS11','PS12','PS13','PS15','PS16','PS17','PS18',
-                  'PS19','PS20','PS21','PS22','PS23','PS24','PS25','PS26','PS27'],
+          id: '6854',
+          name: 'AI-Generated 6.854 Notes',
+          psets: ['L01','L02','L03','L04','L05','L06','L07','L08','L09','L10',
+                  'L11','L12','L13','L14','L15','L16','L17','L18','L19','L20',
+                  'L21','L22','L23','L24'],
         },
       ],
     };
@@ -128,7 +128,7 @@ async function renderIndex() {
       card.href = `#/${course.id}/PS/${pset}`;
       card.innerHTML = `
         <div class="pset-name">${pset}</div>
-        <div class="pset-score">${sc && sc.total > 0 ? `${sc.earned}/${sc.total} pts` : '—'}</div>
+        <div class="pset-score">${sc && sc.total > 0 ? `${+sc.earned.toFixed(2)}/${+sc.total.toFixed(2)} pts` : '—'}</div>
       `;
       grid.appendChild(card);
     }
@@ -241,7 +241,7 @@ async function renderPsetPage(courseId, psetPath) {
   function updateScoreBar() {
     const frac = document.getElementById('score-frac');
     const fill = document.getElementById('score-fill');
-    if (frac) frac.textContent = totalPoints > 0 ? `${totalEarned}/${totalPoints}` : '—';
+    if (frac) frac.textContent = totalPoints > 0 ? `${+totalEarned.toFixed(2)}/${+totalPoints.toFixed(2)}` : '—';
     if (fill) fill.style.width = totalPoints > 0 ? `${(totalEarned / totalPoints * 100).toFixed(0)}%` : '0%';
   }
 

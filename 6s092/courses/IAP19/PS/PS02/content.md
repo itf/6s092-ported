@@ -68,7 +68,23 @@ $$T(n) = aT\left(\frac{n}{b}\right) + n^c$$
 Draw the recursion tree.
 
 <showhide>
-The root contains one node with n elements. What happens on the following levels?
+The root contains one node with $n$ elements. Each node spawns $a$ children, each of size $n/b$:
+
+```
+Level 1:              n^c
+                    /  |  \
+Level 2:       (n/b)^c ... (n/b)^c       ← a nodes
+               / | \       / | \
+Level 3:  (n/b²)^c ...  (n/b²)^c         ← a² nodes
+                    ...
+Level k:          (n/bᵏ⁻¹)^c             ← aᵏ⁻¹ nodes
+                    ...
+Leaves:              1                   ← a^(log_b n) nodes
+```
+
+Work at level $k$ (0-indexed): $a^k \cdot (n/b^k)^c = n^c \cdot (a/b^c)^k$
+
+The tree has $\log_b n$ levels, and the leaves are $T(1)$ base cases.
 </showhide>
 </checkyourself>
 
