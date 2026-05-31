@@ -188,15 +188,17 @@ function renderMultipleChoice(vars, qid, onScore, onSaveAnswer, savedAnswer) {
       }
     } else {
       const sel = selected;
-      // soln is the correct option value (string)
+      // soln may be an index (number) or the option text (string)
+      const solnIdx = (typeof soln === 'number' || (typeof soln === 'string' && soln === String(parseInt(soln, 10))))
+        ? parseInt(soln, 10) : -1;
+      const solnText = solnIdx >= 0 ? (options[solnIdx] ?? soln) : soln;
       correct = sel !== null && (
-        sel === soln ||
-        sel === String(soln) ||
+        sel === solnText ||
         (Array.isArray(soln) && soln.includes(sel))
       );
 
       if (showAnswer) {
-        const solnVal = Array.isArray(soln) ? soln[0] : soln;
+        const solnVal = Array.isArray(soln) ? soln[0] : solnText;
         answerArea.querySelectorAll('.mc-option').forEach((row, i) => {
           row.classList.remove('correct-ans', 'wrong-ans');
           if (options[i] === solnVal) row.classList.add('correct-ans');
@@ -221,6 +223,7 @@ function renderMultipleChoice(vars, qid, onScore, onSaveAnswer, savedAnswer) {
 
     if (correct) onScore(npoints, npoints);
     else onScore(0, npoints);
+    renderMath(feedback);
   }
 
   submitBtn.addEventListener('click', () => check(false));
@@ -271,6 +274,7 @@ function renderExpression(vars, qid, onScore, onSaveAnswer, savedAnswer) {
       if (explanation) feedback.appendChild(makeEl('div', 'explanation-box', renderMarkdown(explanation)));
       submitBtn.disabled = false;
       submitBtn.textContent = 'Check';
+      renderMath(feedback);
       return;
     }
 
@@ -279,6 +283,7 @@ function renderExpression(vars, qid, onScore, onSaveAnswer, savedAnswer) {
       feedback.appendChild(feedbackEl('wrong', 'Please enter an expression.'));
       submitBtn.disabled = false;
       submitBtn.textContent = 'Check';
+      renderMath(feedback);
       return;
     }
 
@@ -301,6 +306,7 @@ function renderExpression(vars, qid, onScore, onSaveAnswer, savedAnswer) {
 
     submitBtn.disabled = false;
     submitBtn.textContent = 'Check';
+    renderMath(feedback);
   }
 
   submitBtn.addEventListener('click', () => check(false));
@@ -363,6 +369,7 @@ function renderTextInput(vars, qid, onScore, onSaveAnswer, savedAnswer, isNumber
     box.classList.toggle('answered-correct', correct);
     box.classList.toggle('answered-wrong', !correct);
     onScore(correct ? npoints : 0, npoints);
+    renderMath(feedback);
   }
 
   submitBtn.addEventListener('click', () => check(false));
@@ -426,6 +433,7 @@ function renderPythonLiteral(vars, qid, onScore, onSaveAnswer, savedAnswer) {
     box.classList.toggle('answered-correct', correct);
     box.classList.toggle('answered-wrong', !correct);
     onScore(correct ? npoints : 0, npoints);
+    renderMath(feedback);
   }
 
   submitBtn.addEventListener('click', () => check(false));

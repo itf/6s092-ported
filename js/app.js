@@ -88,6 +88,8 @@ async function navigate() {
   const parts = getRoute();
   if (parts.length === 0) {
     await renderIndex();
+  } else if (parts.length === 1 && parts[0] === 'ai') {
+    await renderAiIndex();
   } else if (parts.length === 1) {
     await renderCourseIndex(parts[0]);
   } else if (parts.length >= 3) {
@@ -101,23 +103,14 @@ async function navigate() {
 window.addEventListener('hashchange', navigate);
 window.addEventListener('DOMContentLoaded', navigate);
 
-// ── Index page ────────────────────────────────────────────────────────────────
-async function renderIndex() {
-  const manifest = await loadManifest();
-  topNav.innerHTML = '';
-
-  let html = '<h1 style="margin-bottom:1.5rem">6.s092 Code Checker</h1>';
-  html += '<p style="margin-bottom:2rem;color:var(--text-muted)">Select a course and problem set to get started. Your progress is saved locally in your browser.</p>';
-
-  root.innerHTML = html;
-
-  for (const course of manifest.courses) {
+// ── Shared helper: render a list of courses as pset-grid sections ─────────────
+async function renderCourseList(courses) {
+  for (const course of courses) {
     const section = document.createElement('div');
     section.className = 'course-section';
     section.innerHTML = `<h2>${course.name}</h2>`;
 
     const scores = await getAllPsetScores(course.id);
-
     const grid = document.createElement('div');
     grid.className = 'pset-grid';
 
@@ -136,6 +129,40 @@ async function renderIndex() {
     section.appendChild(grid);
     root.appendChild(section);
   }
+}
+
+// ── Index page ────────────────────────────────────────────────────────────────
+async function renderIndex() {
+  const manifest = await loadManifest();
+  topNav.innerHTML = '';
+
+  const mainCourses = manifest.courses.filter(c => c.id !== '6854');
+
+  let html = '<h1 style="margin-bottom:1.5rem">6.s092 Code Checker</h1>';
+  html += '<p style="margin-bottom:2rem;color:var(--text-muted)">Select a course and problem set to get started. Your progress is saved locally in your browser.</p>';
+  root.innerHTML = html;
+
+  await renderCourseList(mainCourses);
+
+  const footer = document.createElement('p');
+  footer.style.cssText = 'margin-top:3rem;color:var(--text-muted);font-size:0.875rem';
+  footer.innerHTML = `<a href="#/ai" style="color:var(--text-muted)">AI-generated 6.854 problem sets →</a>`;
+  root.appendChild(footer);
+}
+
+// ── AI index page (#/ai) ──────────────────────────────────────────────────────
+async function renderAiIndex() {
+  const manifest = await loadManifest();
+  topNav.innerHTML = `<a href="#/">← Home</a>`;
+
+  const aiCourses = manifest.courses.filter(c => c.id === '6854');
+
+  let html = '<h1 style="margin-bottom:0.5rem">AI-Generated 6.854 Notes</h1>';
+  html += '<p style="margin-bottom:0.5rem;color:var(--text-muted)">Problem sets automatically generated from <a href="http://people.csail.mit.edu/moitra/docs/" target="_blank">Ankur Moitra\'s 6.854 lecture notes</a>.</p>';
+  html += '<p style="margin-bottom:2rem;padding:0.5rem 0.75rem;background:#fff8e1;border-left:3px solid #f9a825;border-radius:3px;font-size:0.875rem">⚠️ <strong>AI-Generated Content:</strong> Questions and solutions were automatically generated and may contain errors. Use as a study aid only.</p>';
+  root.innerHTML = html;
+
+  await renderCourseList(aiCourses);
 }
 
 // ── Course index page ─────────────────────────────────────────────────────────
