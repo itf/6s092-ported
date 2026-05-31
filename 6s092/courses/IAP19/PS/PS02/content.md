@@ -125,22 +125,23 @@ csq_nsubmits = None
 <question expression>
 csq_prompt = """Let the amount of work done in the first level be $x$ and the amount of work in the second level be $y$.
 
-What is $\\frac{y}{x}$ In terms of $a, b, c, n$?
+What is $\\frac{y}{x}$ In terms of $a, b, c$? Make sure to simplify the result.
 """
 csq_error_on_unknown_variable = True #make sure they get rid of n in the answer
 csq_show_check = True
 csq_allow_check = True
 csq_allow_submit = True
 csq_allow_submit_after_answer_viewed = False
-csq_explanation = "$x$ is $n^c and $y$ is $\frac{an^c}{b^c}"
+csq_explanation = "$x$ is $n^c and $y$ is $\\frac{an^c}{b^c}"
 csq_soln = ["a/(b^c)"]
 csq_nsubmits = None
+csq_error_on_unknown_variable = True
 </question>
 
 <question expression>
 csq_prompt = """Let the amount of work done in the first level be $x$ and the amount of work in the $(i+1)_{th}$ level be $y$.
 
-What is $\\frac{y}{x}$ in terms of $a, b, c, n, i$?
+What is $\\frac{y}{x}$ in terms of $a, b, c, i$? Try to simplify the result.
 """
 csq_error_on_unknown_variable = True #make sure they get rid of n in the answer
 csq_show_check = True

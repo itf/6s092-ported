@@ -1,7 +1,7 @@
 # Readings 
-[Recitation 8: Binary Heaps](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_r08/) on OCW (originally, Recitation notes 5a from Fall 2018; ⚠️ title mismatch: Fall 2018 covered Priority Queues, Spring 2020 Recitation 8 covers Binary Heaps)
+[Recitation 8: Binary Heaps](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_r08/) on OCW (originally, Recitation notes 5a from Fall 2018)
 
-[Lecture 8: Binary Heaps](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec8/) on OCW (originally, Lecture notes 5 from Fall 2018; ⚠️ title mismatch: Fall 2018 covered Priority Queues, Spring 2020 Lecture 8 covers Binary Heaps)
+[Lecture 8: Binary Heaps](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec8/) on OCW (originally, Lecture notes 5 from Fall 2018)
 
 # Priority Queues: Conceptual Questions
 

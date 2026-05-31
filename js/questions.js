@@ -647,7 +647,9 @@ function renderMultiExpression(vars, qid, onScore, onSaveAnswer, savedAnswer) {
 export function renderCheckyourself(text, showhide) {
   const box = makeEl('div', 'checkyourself-box');
   box.appendChild(makeEl('div', 'cky-header', '🤔 Check Yourself'));
-  box.innerHTML += renderMarkdown(text);
+  const textEl = document.createElement('div');
+  textEl.innerHTML = renderMarkdown(text);
+  box.appendChild(textEl);
   if (showhide) {
     const toggleBtn = document.createElement('button');
     toggleBtn.className = 'showhide-btn';

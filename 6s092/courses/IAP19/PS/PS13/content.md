@@ -7,7 +7,7 @@
 
 [Open Addressing (OCW notes)](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec4/): For information on the collision-handling mechanism that Python actually uses, rather than the simplified chaining mechanism that we discuss here and in 6.006. (originally, Fall 2011 Lecture 10)
 
-[Rabin-Karp Algorithm (OCW notes)](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec4/): For information on a clever rolling-hash algorithm that's used to efficiently find patterns in a string! (originally, Fall 2011 Lecture 9; ⚠️ Spring 2020 has no dedicated Rabin-Karp lecture — linked to Lecture 4: Hashing as the closest equivalent)
+[Rabin-Karp Algorithm (OCW notes)](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec4/): For information on a clever rolling-hash algorithm that's used to efficiently find patterns in a string! (originally, Fall 2011 Lecture 9)
 
 # Hashtables and Hashing
 

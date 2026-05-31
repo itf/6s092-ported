@@ -1,5 +1,5 @@
 # Readings 
-[Recitation 11: Weighted Shortest Paths](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_r11/) on OCW Spring 2020 (originally, Recitation notes 12, 6.006 Fall 2018 on Stellar; ⚠️ note number changed: was 12, now 11)
+[Recitation 11: Weighted Shortest Paths](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_r11/) on OCW Spring 2020 (originally, Recitation notes 12, 6.006 Fall 2018 on Stellar)
 
 DFS pset here on cat-soop.
 

@@ -1,5 +1,5 @@
 # Readings
-[Recitation 6: Binary Trees, Part 1](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_r06/) on OCW (originally, Recitation notes 5b from Fall 2018; ⚠️ title mismatch)
+[Recitation 6: Binary Trees, Part 1](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_r06/) on OCW (originally, Recitation notes 5b from Fall 2018)
 
 [Lecture 6: Binary Trees, Part 1](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec6/) on OCW (originally, Lecture notes 6 from Fall 2018)
 

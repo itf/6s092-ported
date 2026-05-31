@@ -63,10 +63,170 @@ csq_explanation = ""
 csq_nsubmits = None
 </question>
 
-TODO one day write the proof that it works here. But for now, just check the [wikipedia page](https://en.wikipedia.org/wiki/Prim%27s_algorithm).
+## Correctness of Prim's Algorithm
 
+**Claim:** Prim's algorithm always produces a minimum spanning tree.
 
-TODO One day write coding question to generate maze. For now, just look at the [maze animation on wikipedia](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/MAZE_30x20_Prim.ogv/220px--MAZE_30x20_Prim.ogv.jpg)
+<checkyourself>
+Can you sketch a proof of why Prim's algorithm is correct?
+
+*Hint:* Use a "cut" argument. At each step, Prim's algorithm has a set $S$ of nodes already in the tree and a set $V \setminus S$ of nodes not yet added. Think about what edges cross this cut.
+<showhide>
+**Proof (Cut Property):**
+
+We prove by induction that every edge Prim's adds is in some MST.
+
+**Base case:** The empty tree is a subset of every MST. ✓
+
+**Inductive step:** Suppose $T_k$ (the first $k$ edges chosen) is contained in some MST $T^{\ast}$. Prim's next picks the minimum-weight edge $e = (u, v)$ crossing the cut $(S, V \setminus S)$, where $S$ is the current tree's nodes.
+
+- If $e \in T^{\ast}$, then $T_{k+1} \subseteq T^{\ast}$ and we are done.
+- If $e \notin T^{\ast}$: Adding $e$ to $T^{\ast}$ creates a cycle. That cycle must contain another edge $e^{\prime}$ also crossing the cut $(S, V \setminus S)$ (since a cycle must re-cross any cut it crosses). Because Prim's chose $e$ as the minimum-weight such crossing edge, $w(e) \le w(e^{\prime})$. Swapping $e^{\prime}$ for $e$ in $T^{\ast}$ gives a spanning tree $T^{\ast\ast}$ with $w(T^{\ast\ast}) \le w(T^{\ast})$. Since $T^{\ast}$ is an MST, $w(T^{\ast\ast}) = w(T^{\ast})$, so $T^{\ast\ast}$ is also an MST and contains $T_{k+1}$.
+
+By induction, Prim's complete tree is contained in an MST — and since it has exactly $|V|-1$ edges and spans all vertices, it **is** an MST. $\blacksquare$
+</showhide>
+</checkyourself>
+
+## Maze generation with Prim's algorithm
+
+A fun application: you can generate a random maze using a randomized version of Prim's algorithm!
+
+**Idea:** Represent a grid of cells as a graph. Each cell is a node; adjacent cells are connected by edges with random weights. Run Prim's to get the MST — the tree edges become the *open passages* of the maze, and non-tree edges are *walls*.
+
+[Maze animation on wikipedia](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/MAZE_30x20_Prim.ogv/220px--MAZE_30x20_Prim.ogv.jpg)
+
+<question pythoncode>
+csq_prompt = """
+Implement `prim_maze(rows, cols, seed)` that generates a random maze on a `rows × cols` grid using a randomized Prim's algorithm.
+
+- Cells are numbered `(r, c)` for `0 <= r < rows`, `0 <= c < cols`.
+- Two cells are neighbors if they differ by exactly 1 in one coordinate.
+- Use `random.Random(seed)` to assign each potential wall a random weight.
+- Return the set of **open passages** as a set of frozensets: `{frozenset({cell_a, cell_b}), ...}` — one per MST edge.
+- The result must span all `rows * cols` cells (i.e., exactly `rows*cols - 1` passages).
+
+```python
+import random
+
+def prim_maze(rows, cols, seed=42):
+    # Your code here
+    pass
+```
+"""
+csq_initial = """import random
+import heapq
+
+def prim_maze(rows, cols, seed=42):
+    rng = random.Random(seed)
+    # Build edge list with random weights
+    edges = {}  # cell -> list of (weight, neighbor)
+    for r in range(rows):
+        for c in range(cols):
+            cell = (r, c)
+            edges[cell] = []
+            for dr, dc in [(-1,0),(1,0),(0,-1),(0,1)]:
+                nr, nc = r+dr, c+dc
+                if 0 <= nr < rows and 0 <= nc < cols:
+                    w = rng.random()
+                    edges[cell].append((w, (nr, nc)))
+
+    # Prim's from cell (0,0)
+    in_tree = set()
+    passages = set()
+    start = (0, 0)
+    in_tree.add(start)
+    # heap: (weight, from_cell, to_cell)
+    heap = [(w, start, nb) for w, nb in edges[start]]
+    heapq.heapify(heap)
+
+    while heap:
+        w, u, v = heapq.heappop(heap)
+        if v in in_tree:
+            continue
+        in_tree.add(v)
+        passages.add(frozenset({u, v}))
+        for w2, nb in edges[v]:
+            if nb not in in_tree:
+                heapq.heappush(heap, (w2, v, nb))
+
+    return passages
+"""
+csq_soln = """import random
+import heapq
+
+def prim_maze(rows, cols, seed=42):
+    rng = random.Random(seed)
+    edges = {}
+    for r in range(rows):
+        for c in range(cols):
+            cell = (r, c)
+            edges[cell] = []
+            for dr, dc in [(-1,0),(1,0),(0,-1),(0,1)]:
+                nr, nc = r+dr, c+dc
+                if 0 <= nr < rows and 0 <= nc < cols:
+                    w = rng.random()
+                    edges[cell].append((w, (nr, nc)))
+    in_tree = set()
+    passages = set()
+    start = (0, 0)
+    in_tree.add(start)
+    heap = [(w, start, nb) for w, nb in edges[start]]
+    heapq.heapify(heap)
+    while heap:
+        w, u, v = heapq.heappop(heap)
+        if v in in_tree:
+            continue
+        in_tree.add(v)
+        passages.add(frozenset({u, v}))
+        for w2, nb in edges[v]:
+            if nb not in in_tree:
+                heapq.heappush(heap, (w2, v, nb))
+    return passages
+"""
+csq_code_pre = ""
+csq_tests = [
+    {
+        "code": """
+result = prim_maze(3, 3, seed=1)
+ans = len(result) == 8  # 3*3 - 1 passages
+"""
+    },
+    {
+        "code": """
+result = prim_maze(3, 3, seed=1)
+# All cells must be reachable (check connectivity)
+cells = {(r,c) for r in range(3) for c in range(3)}
+adj = {c: set() for c in cells}
+for edge in result:
+    a, b = tuple(edge)
+    adj[a].add(b)
+    adj[b].add(a)
+visited = set()
+queue = [(0,0)]
+while queue:
+    node = queue.pop()
+    if node in visited: continue
+    visited.add(node)
+    queue.extend(adj[node])
+ans = visited == cells
+"""
+    },
+    {
+        "code": """
+result = prim_maze(5, 5, seed=7)
+ans = len(result) == 24  # 5*5 - 1
+"""
+    },
+    {
+        "code": """
+result = prim_maze(2, 2, seed=0)
+# Must be a tree: n-1 edges, connected, no extra edges
+ans = len(result) == 3
+"""
+    },
+]
+csq_nsubmits = None
+</question>
 
 # Quick sort
 Do you wanna sort things quickly? So let's talk about quick sort.
@@ -717,8 +877,182 @@ If you did it all right, you should have found approximately 3.4.
 Try implementing in place quickselect.  
 </checkyourself>
 
-# Flajolet-Martin 
-Read this algorithm. It is really cool. Here are [Ankur Moitra's 6.854 notes](http://people.csail.mit.edu/moitra/docs/6854lec4.pdf). I didn't have time to write the questions.
+# Flajolet-Martin
+
+Read this algorithm. It is really cool. Here are [Ankur Moitra's 6.854 notes](http://people.csail.mit.edu/moitra/docs/6854lec4.pdf).
+
+The **Flajolet-Martin algorithm** solves the **distinct elements** (or **cardinality estimation**) problem: given a stream of elements, estimate how many *distinct* elements appear, using only $O(\log n)$ bits of space — far less than storing all elements.
+
+## The Algorithm
+
+Given a stream of elements $a_1, a_2, \ldots$:
+
+1. Pick a random hash function $h$ mapping elements uniformly to $\{0, 1, \ldots, 2^L - 1\}$ for large $L$.
+2. For each element $a$, compute $\text{zeros}(h(a))$: the number of **trailing zeros** in the binary representation of $h(a)$.
+3. Track $R = \max_i \text{zeros}(h(a_i))$ over all elements seen.
+4. Return $2^R$ as the estimate of the number of distinct elements.
+
+The key insight is probabilistic: if the hash is uniform, then for any element $x$:
+$$P(\text{zeros}(h(x)) \geq k) = \frac{1}{2^k}$$
+
+<question multiplechoice>
+csq_prompt = """What problem does the Flajolet-Martin algorithm solve?"""
+csq_renderer = "radio"
+csq_options = [
+    "Sorting a stream of elements in $O(n \\\\log n)$ time",
+    "Estimating the number of **distinct** elements in a data stream using sublinear space",
+    "Finding the most frequent element in a data stream",
+    "Computing the median of a data stream exactly",
+]
+csq_soln = 1
+csq_explanation = "Flajolet-Martin is a streaming algorithm for cardinality estimation — counting distinct elements using only O(log n) bits, versus O(n) for exact counting."
+csq_nsubmits = None
+</question>
+
+<question multiplechoice>
+csq_prompt = """Suppose $h$ maps elements uniformly at random to $\\\\{0, 1, \\\\ldots, 2^L - 1\\\\}$.
+
+What is $P(\\\\text{zeros}(h(x)) \\\\geq k)$ for a single element $x$, where $L \\\\gg k$?"""
+csq_renderer = "radio"
+csq_options = [
+    "$\\\\frac{1}{k}$",
+    "$\\\\frac{1}{2^k}$",
+    "$\\\\frac{k}{2^L}$",
+    "$\\\\frac{1}{\\\\log k}$",
+]
+csq_soln = 1
+csq_explanation = "Among $2^L$ equally likely hash values, exactly $2^{L-k}$ are multiples of $2^k$ (i.e., have $\\\\geq k$ trailing zeros), so the probability is $2^{L-k}/2^L = 1/2^k$."
+csq_nsubmits = None
+</question>
+
+<question multiplechoice>
+csq_prompt = """How much space does Flajolet-Martin use (ignoring the hash function itself)?"""
+csq_renderer = "radio"
+csq_options = [
+    "$O(n)$ bits — one bit per distinct element seen",
+    "$O(\\\\sqrt{n})$ bits",
+    "$O(\\\\log n)$ bits — only need to store $R$, the maximum trailing-zero count",
+    "$O(1)$ bits",
+]
+csq_soln = 2
+csq_explanation = "We only store the running maximum $R \\\\in \\\\{0, 1, \\\\ldots, L\\\\}$, which takes $O(\\\\log L)$ bits. This is far better than $O(n)$ bits needed for exact counting."
+csq_nsubmits = None
+</question>
+
+<checkyourself>
+Why is $2^R$ a reasonable estimate for the number of distinct elements $n$?
+
+<showhide>
+**Intuition:**
+
+For a set of $n$ distinct elements with independent uniform hashes:
+
+- For each element $x$: $P(\text{zeros}(h(x)) \geq k) = 1/2^k$.
+- Expected number of elements with $\geq k$ trailing zeros $= n/2^k$.
+- When $2^k \ll n$: many elements hash to this level → almost certainly $R \geq k$.
+- When $2^k \gg n$: almost no elements reach this level → almost certainly $R < k$.
+- The tipping point is around $2^k \approx n$, i.e., $k \approx \log_2 n$.
+
+So $R \approx \log_2 n$ with high probability, giving $2^R \approx n$.
+
+More precisely, $E[2^R] \approx 0.7735 \cdot n$, so practical implementations divide by this constant.
+</showhide>
+</checkyourself>
+
+<question multiplechoice>
+csq_prompt = """The basic Flajolet-Martin estimator $2^R$ has high variance. What is the standard technique to reduce it?"""
+csq_renderer = "radio"
+csq_options = [
+    "Run the algorithm only on even-indexed stream elements",
+    "Use a larger hash table",
+    "Run $k$ independent copies and take the **median of means**: average within groups, then take the median across groups",
+    "Sort the stream first to deduplicate it",
+]
+csq_soln = 2
+csq_explanation = "The median-of-means trick: run $O(\\\\log(1/\\\\delta))$ independent hash functions, partition into groups of size $O(1/\\\\epsilon^2)$, average within each group, and take the median. This gives a $(1 \\\\pm \\\\epsilon)$ approximation with probability $\\\\geq 1-\\\\delta$."
+csq_nsubmits = None
+</question>
+
+<question pythoncode>
+csq_prompt = """Implement `flajolet_martin(stream, num_hashes=20, seed=0)` that estimates the number of distinct elements in `stream` using the Flajolet-Martin algorithm.
+
+- Use `num_hashes` independent hash functions to reduce variance: return the **mean** of all $2^{R_i}$ estimates.
+- Use `hash((seed + i, x)) % (2**32)` as the $i$-th hash of element `x`.
+- `trailing_zeros(v)` counts trailing zeros in the binary representation of `v` (return 0 if v == 0).
+
+```python
+def flajolet_martin(stream, num_hashes=20, seed=0):
+    # Your code here
+    pass
+```
+"""
+csq_initial = """def trailing_zeros(v):
+    if v == 0:
+        return 0
+    count = 0
+    while v & 1 == 0:
+        v >>= 1
+        count += 1
+    return count
+
+def flajolet_martin(stream, num_hashes=20, seed=0):
+    pass
+"""
+csq_soln = """def trailing_zeros(v):
+    if v == 0:
+        return 0
+    count = 0
+    while v & 1 == 0:
+        v >>= 1
+        count += 1
+    return count
+
+def flajolet_martin(stream, num_hashes=20, seed=0):
+    R = [0] * num_hashes
+    for x in stream:
+        for i in range(num_hashes):
+            h = hash((seed + i, x)) % (2**32)
+            R[i] = max(R[i], trailing_zeros(h))
+    return sum(2**r for r in R) / num_hashes
+"""
+csq_code_pre = ""
+csq_tests = [
+    {
+        "code": """
+# Empty stream: all R[i] = 0, so 2^0 = 1 for each, mean = 1
+est = flajolet_martin([], num_hashes=10, seed=0)
+ans = est == 1.0
+"""
+    },
+    {
+        "code": """
+# Large distinct set: estimate should be within 5x
+stream = list(range(1000))
+est = flajolet_martin(stream, num_hashes=100, seed=42)
+ans = 200 <= est <= 5000
+"""
+    },
+    {
+        "code": """
+# Duplicates don't inflate count: only 10 distinct
+stream = [x % 10 for x in range(1000)]
+est = flajolet_martin(stream, num_hashes=100, seed=7)
+ans = 2 <= est <= 100
+"""
+    },
+    {
+        "code": """
+# Larger estimate for larger set
+stream_small = list(range(10))
+stream_large = list(range(10000))
+est_small = flajolet_martin(stream_small, num_hashes=100, seed=1)
+est_large = flajolet_martin(stream_large, num_hashes=100, seed=1)
+ans = est_large > est_small
+"""
+    },
+]
+csq_nsubmits = None
+</question>
 ## Other relevant problems / further reading
 
 - [OCW 6.006 Spring 2020 — Practice Problems](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/pages/practice-problems/): problem sessions with worked examples and solutions.

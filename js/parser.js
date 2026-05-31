@@ -90,36 +90,4 @@ function findClose(str, from, closeTag) {
   return idx;
 }
 
-/**
- * Parse the Python variable assignments inside a <question> block.
- * Returns a plain object with all csq_* variables.
- *
- * This is a best-effort parser: we exec the code in Python (via Pyodide)
- * but we also do a quick JS pre-parse for simple cases when Pyodide is busy.
- */
-export async function parseQuestionVars(code, pyRunner, sharedContext) {
-  // Run the question's code in a fresh namespace that inherits shared context,
-  // then collect all csq_* variables.
-  const script = `
-_qvars = {}
-_locals = dict(__builtins__=__builtins__)
-_locals.update(_shared_context)
-try:
-    exec(_question_code, _locals)
-    _qvars = {k: v for k, v in _locals.items() if k.startswith('csq_') or k == 'tests' or k == 'is_correct'}
-except Exception as _e:
-    _qvars['_parse_error'] = str(_e)
-import json as _json
-_json.dumps(_qvars, default=str)
-`;
-  try {
-    const result = await pyRunner.runWithContext(script, {
-      _question_code: code,
-      _shared_context: sharedContext,
-    });
-    return JSON.parse(result);
-  } catch (e) {
-    console.warn('parseQuestionVars error', e);
-    return {};
-  }
-}
+

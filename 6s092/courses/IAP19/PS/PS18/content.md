@@ -1,5 +1,5 @@
 # Readings 
-[Recitation 9: Breadth-First Search](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_r09/) on OCW, section on Graph Representations (originally, Recitation 10 from Fall 2018; ⚠️ Spring 2020 integrates graph representations into Recitation 9: BFS)
+[Recitation 9: Breadth-First Search](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_r09/) on OCW, section on Graph Representations (originally, Recitation 10 from Fall 2018)
 
 [Lecture 9: Breadth-First Search](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec9/) on OCW, section on Graph Representations (originally, Lecture 10 from Fall 2018; note number changed: was 10, now 9)
 

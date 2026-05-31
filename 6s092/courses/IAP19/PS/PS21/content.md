@@ -1,5 +1,5 @@
 # Readings
-[Recitation 11: Weighted Shortest Paths](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_r11/) on OCW (originally, Recitation notes 12 from Fall 2018 — "Weights and Relaxation"; ⚠️ title mismatch: Spring 2020 calls it "Weighted Shortest Paths")
+[Recitation 11: Weighted Shortest Paths](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_r11/) on OCW (originally, Recitation notes 12 from Fall 2018 — "Weights and Relaxation")
 
 # Relaxation
 

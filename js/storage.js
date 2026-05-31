@@ -104,23 +104,6 @@ export async function getAllPsetScores(course) {
   return map;
 }
 
-/** Save code for a question. */
-export async function saveCode(course, pset, qIndex, code) {
-  const db = await getDb();
-  await db.put('code', {
-    id: qKey(course, pset, qIndex),
-    code,
-    lastUpdated: Date.now(),
-  });
-}
-
-/** Load code for a question. */
-export async function loadCode(course, pset, qIndex) {
-  const db = await getDb();
-  const entry = await db.get('code', qKey(course, pset, qIndex));
-  return entry?.code ?? null;
-}
-
 /**
  * Save the selected answer for a question (for UI restoration on reload).
  * `data` is a plain JSON-serializable object specific to the question type.

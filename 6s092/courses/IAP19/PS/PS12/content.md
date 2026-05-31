@@ -1,5 +1,5 @@
 # Readings 
-[Recitation 5: Linear Sorting](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_r05/) on OCW Spring 2020 (originally, Recitation notes 8, 6.006 Fall 2018 on Stellar — Linear Sorting; ⚠️ note number changed: was 8, now 5)
+[Recitation 5: Linear Sorting](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_r05/) on OCW Spring 2020 (originally, Recitation notes 8, 6.006 Fall 2018 on Stellar — Linear Sorting)
 
 
 ## Counting sort review

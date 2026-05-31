@@ -1,7 +1,7 @@
 # Readings 
-[Recitation 4: Hashing](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_r04/) on OCW — sections on Direct Access Array (originally, Recitation notes 7 from Fall 2018; ⚠️ Spring 2020 groups Direct Access Arrays with Hashing in Recitation 4)
+[Recitation 4: Hashing](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_r04/) on OCW — sections on Direct Access Array (originally, Recitation notes 7 from Fall 2018)
 
-[Lecture 4: Hashing](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec4/) on OCW — sections on Direct Access Array (originally, Lecture notes 8 from Fall 2018; ⚠️ Spring 2020 groups Direct Access Arrays with Hashing in Lecture 4)
+[Lecture 4: Hashing](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec4/) on OCW — sections on Direct Access Array (originally, Lecture notes 8 from Fall 2018)
 
 # Direct Access Array
 
