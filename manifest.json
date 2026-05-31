@@ -35,11 +35,55 @@
     },
     {
       "id": "6854",
-      "name": "AI-Generated 6.854 Notes",
+      "name": "AI-Generated 6.854 Advanced Algorithms",
       "psets": [
         "L01", "L02", "L03", "L04", "L05", "L06", "L07", "L08", "L09", "L10",
         "L11", "L12", "L13", "L14", "L15", "L16", "L17", "L18", "L19", "L20",
         "L21", "L22", "L23", "L24", "L25"
+      ]
+    },
+    {
+      "id": "6046",
+      "name": "AI-Generated 6.046J Design and Analysis of Algorithms",
+      "psets": [
+        "L01", "L02", "L03", "L04", "L05", "L06", "L07", "L08", "L09", "L10",
+        "L11", "L12", "L13", "L14", "L15", "L16", "L17", "L18", "L19", "L20",
+        "L21", "L22", "L23", "L24"
+      ]
+    },
+    {
+      "id": "6080",
+      "name": "AI-Generated 6.080 Great Ideas in TCS",
+      "psets": [
+        "L01", "L02", "L03", "L04", "L05", "L06", "L07", "L08", "L09", "L10",
+        "L11", "L12", "L13", "L14", "L15", "L16", "L17", "L18", "L19", "L20",
+        "L21", "L22", "L23", "L24"
+      ]
+    },
+    {
+      "id": "6172",
+      "name": "AI-Generated 6.172 Performance Engineering",
+      "psets": [
+        "L01", "L02", "L03", "L04", "L05", "L06", "L07", "L08", "L09", "L10",
+        "L11", "L12", "L13", "L14", "L15", "L16", "L17", "L18", "L19", "L20",
+        "L21", "L22", "L23"
+      ]
+    },
+    {
+      "id": "6033",
+      "name": "AI-Generated 6.033 Computer System Engineering",
+      "psets": [
+        "L01", "L02", "L03", "L04", "L05", "L06", "L07", "L08", "L09", "L10",
+        "L11", "L12", "L13", "L14", "L15", "L16", "L17", "L18", "L19", "L20",
+        "L21", "L22", "L23", "L24"
+      ]
+    },
+    {
+      "id": "6824",
+      "name": "AI-Generated 6.824 Distributed Systems",
+      "psets": [
+        "L01", "L02", "L03", "L04", "L05", "L06", "L07", "L08", "L09", "L10",
+        "L11", "L12", "L13", "L14", "L15", "L16", "L17", "L18"
       ]
     }
   ]

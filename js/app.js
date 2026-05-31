@@ -40,10 +40,44 @@ async function loadManifest() {
         },
         {
           id: '6854',
-          name: 'AI-Generated 6.854 Notes',
+          name: 'AI-Generated 6.854 Advanced Algorithms',
+          psets: ['L01','L02','L03','L04','L05','L06','L07','L08','L09','L10',
+                  'L11','L12','L13','L14','L15','L16','L17','L18','L19','L20',
+                  'L21','L22','L23','L24','L25'],
+        },
+        {
+          id: '6046',
+          name: 'AI-Generated 6.046J Design and Analysis of Algorithms',
           psets: ['L01','L02','L03','L04','L05','L06','L07','L08','L09','L10',
                   'L11','L12','L13','L14','L15','L16','L17','L18','L19','L20',
                   'L21','L22','L23','L24'],
+        },
+        {
+          id: '6080',
+          name: 'AI-Generated 6.080 Great Ideas in TCS',
+          psets: ['L01','L02','L03','L04','L05','L06','L07','L08','L09','L10',
+                  'L11','L12','L13','L14','L15','L16','L17','L18','L19','L20',
+                  'L21','L22','L23','L24'],
+        },
+        {
+          id: '6172',
+          name: 'AI-Generated 6.172 Performance Engineering',
+          psets: ['L01','L02','L03','L04','L05','L06','L07','L08','L09','L10',
+                  'L11','L12','L13','L14','L15','L16','L17','L18','L19','L20',
+                  'L21','L22','L23'],
+        },
+        {
+          id: '6033',
+          name: 'AI-Generated 6.033 Computer System Engineering',
+          psets: ['L01','L02','L03','L04','L05','L06','L07','L08','L09','L10',
+                  'L11','L12','L13','L14','L15','L16','L17','L18','L19','L20',
+                  'L21','L22','L23','L24'],
+        },
+        {
+          id: '6824',
+          name: 'AI-Generated 6.824 Distributed Systems',
+          psets: ['L01','L02','L03','L04','L05','L06','L07','L08','L09','L10',
+                  'L11','L12','L13','L14','L15','L16','L17','L18'],
         },
       ],
     };
@@ -136,7 +170,7 @@ async function renderIndex() {
   const manifest = await loadManifest();
   topNav.innerHTML = '';
 
-  const mainCourses = manifest.courses.filter(c => c.id !== '6854');
+  const mainCourses = manifest.courses.filter(c => c.id === 'IAP19');
 
   let html = '<h1 style="margin-bottom:1.5rem">6.s092 Code Checker</h1>';
   html += '<p style="margin-bottom:2rem;color:var(--text-muted)">Select a course and problem set to get started. Your progress is saved locally in your browser.</p>';
@@ -155,7 +189,7 @@ async function renderAiIndex() {
   const manifest = await loadManifest();
   topNav.innerHTML = `<a href="#/">← Home</a>`;
 
-  const aiCourses = manifest.courses.filter(c => c.id === '6854');
+  const aiCourses = manifest.courses.filter(c => c.id !== 'IAP19');
 
   let html = '<h1 style="margin-bottom:0.5rem">AI-Generated 6.854 Notes</h1>';
   html += '<p style="margin-bottom:0.5rem;color:var(--text-muted)">Problem sets automatically generated from <a href="http://people.csail.mit.edu/moitra/docs/" target="_blank">Ankur Moitra\'s 6.854 lecture notes</a>.</p>';
