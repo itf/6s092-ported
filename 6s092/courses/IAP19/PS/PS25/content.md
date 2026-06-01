@@ -1,8 +1,8 @@
 # Readings 
 
-Recitation notes [15: Dynamic Programming, Part 1](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_r15/), [16: Dynamic Programming, Part 2](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_r16/) on OCW (originally, Recitation notes 16, 17 from Fall 2018; note numbers shifted: −1)
+[Recitation 15: Dynamic Programming](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_r15/), [Recitation 16: Dynamic Programming Exercises](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_r16/) on OCW (originally, Recitation notes 16, 17 from Fall 2018 — "Dynamic Programming Parts 1 & 2"; note numbers shifted: −1)
 
-Lecture notes [15: Dynamic Programming, Part 1](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec15/), [16: Dynamic Programming, Part 2](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec16/) on OCW (originally, Lecture notes 16, 17 from Fall 2018; note numbers shifted: −1)
+[Lecture 15: Recursive Algorithms](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec15/), [Lecture 16: Dyn. Prog. Subproblems](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec16/) on OCW (originally, Lecture notes 16, 17 from Fall 2018 — "Dynamic Programming Parts 1 & 2"; note numbers shifted: −1)
 
 # Dynamic programming Concepts
 

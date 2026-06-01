@@ -174,8 +174,8 @@ def _evaluate_expression(student_expr, soln_exprs, csq_funcs=None,
         }
         if csq_funcs:
             for fname, (fn, _) in csq_funcs.items():
-                # fn takes a list of args
-                env[fname] = lambda *args, _fn=fn: _fn(list(args))
+                # fn is called with positional args (same convention as preload.py)
+                env[fname] = lambda *args, _fn=fn: _fn(*args)
         env.update(var_values)
         return env
 
@@ -352,7 +352,7 @@ _j2.dumps(_qvars, default=str)
 /**
  * Check an expression answer numerically.
  */
-export async function checkExpression(studentExpr, solnExprs, _unused) {
+export async function checkExpression(studentExpr, solnExprs, hasCsqFuncs) {
   const pyodide = await getPyodide();
   try {
     pyodide.globals.set('_student_expr', studentExpr);

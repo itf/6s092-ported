@@ -1,0 +1,3 @@
+cs_long_name = 'L06: Active Learning (cont.), Non-Linear Predictions, Kernels'
+cs_release_date = '2020-01-01:00:00'
+cs_due_date = '2030-01-01:00:00'

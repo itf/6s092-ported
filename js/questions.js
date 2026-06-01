@@ -290,7 +290,7 @@ function renderExpression(vars, qid, onScore, onSaveAnswer, savedAnswer) {
     const result = await checkExpression(
       studentExpr,
       Array.isArray(soln) ? soln : [soln],
-      null  // csq_funcs are already in page context
+      vars._has_csq_funcs ?? false
     );
 
     feedback.appendChild(feedbackEl(result.correct ? 'correct' : 'wrong',
@@ -637,7 +637,7 @@ function renderMultiExpression(vars, qid, onScore, onSaveAnswer, savedAnswer) {
     let allCorrect = true;
     for (const inp of inputs) {
       const solns = JSON.parse(inp.dataset.solns);
-      const result = await checkExpression(inp.value.trim(), solns, null);
+      const result = await checkExpression(inp.value.trim(), solns, vars._has_csq_funcs ?? false);
       if (!result.correct) { allCorrect = false; break; }
     }
     feedback.appendChild(feedbackEl(allCorrect ? 'correct' : 'wrong',

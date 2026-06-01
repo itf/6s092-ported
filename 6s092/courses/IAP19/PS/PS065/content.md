@@ -1,7 +1,7 @@
 # Readings 
 [Lecture 4: Hashing](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec4/) on OCW, Section "Comparison Model" (Ω(log n) lower bound for comparison-based search; originally, Lecture notes from Fall 2018)
 
-[Recitation 4](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_r04/) on OCW, Section "Comparison Model" (detailed decision-tree proof of Ω(log n) comparison search lower bound; originally, Recitation notes 7 from Fall 2018 — "Comparison Model")
+[Recitation 4: Hashing](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_r04/) on OCW, Section "Comparison Model" (detailed decision-tree proof of Ω(log n) comparison search lower bound; originally, Recitation notes 7 from Fall 2018 — "Comparison Model")
 
 [Lecture 5: Linear Sorting](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec5/) on OCW, Section "Comparison Sort Lower Bound" (Ω(n log n) lower bound for comparison sorting via n! permutations argument)
 

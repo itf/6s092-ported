@@ -5,7 +5,7 @@
 
 # AVL Trees
 
-Some concepts to keep in mind from the F2018 L07 notes:
+Some concepts to keep in mind from the [Lecture 7: Binary Trees, Part 2: AVL](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec7/) notes (originally, F2018 L07 notes):
 
 * **Node height**: The number of edges in the longest path from that node down to a leaf node in its subtree. (Leaves have height zero, because there are no edges down from the leaves).
 
